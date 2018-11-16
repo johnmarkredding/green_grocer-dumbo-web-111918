@@ -48,7 +48,7 @@ def checkout(cart, coupons)
   coup_cart = apply_coupons(cons_cart, coupons)
   clear_cart = apply_clearance(coup_cart)
   coup_cart.each do |k,v|
-    cost += v[:price]
+    cost += v[:price] * v[:count]
   end
   if cost > 100.0
     cost *= 0.9
