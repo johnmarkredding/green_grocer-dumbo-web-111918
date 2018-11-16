@@ -17,18 +17,18 @@ def apply_coupons(cart, coupons)
   new_cart = {}
   coupons.each do |x|
     cart.each do |k,v|
-      if cart[:count]
-      if x[:item] == k
-        if (new_cart["#{k} W/COUPON"] == nil)
-          new_cart["#{k} W/COUPON"] = {}
-          new_cart["#{k} W/COUPON"][:count] = 0
+      if v[:count]
+        if x[:item] == k
+          if (new_cart["#{k} W/COUPON"] == nil)
+            new_cart["#{k} W/COUPON"] = {}
+            new_cart["#{k} W/COUPON"][:count] = 0
+          end
+          new_cart["#{k} W/COUPON"][:count] += 1
+          new_cart["#{k} W/COUPON"][:price] = x[:cost]
+          new_cart["#{k} W/COUPON"][:clearance] = v[:clearance]
+          cart[k][:count] = v[:count] - x[:num]
+          cart[k][:price] = v[:price]
         end
-        new_cart["#{k} W/COUPON"][:count] += 1
-        new_cart["#{k} W/COUPON"][:price] = x[:cost]
-        new_cart["#{k} W/COUPON"][:clearance] = v[:clearance]
-        cart[k][:count] = v[:count] - x[:num]
-        cart[k][:price] = v[:price]
-      end
     end
   end
   new_cart.merge(cart)
