@@ -17,7 +17,7 @@ def apply_coupons(cart, coupons)
   new_cart = {}
   coupons.each do |x|
     cart.each do |k,v|
-      if v[:count] == x[:num]
+      if v[:count] < x[:num]
         if x[:item] == k
           if (new_cart["#{k} W/COUPON"] == nil)
             new_cart["#{k} W/COUPON"] = {}
